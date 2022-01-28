@@ -17,15 +17,27 @@ db.connect((err)=>{
     console.log('mysql connected');
 });
 
-//to create table
-router.get('/createtable',(req,res)=>{
+//to create table request
+router.get('/createtable/request',(req,res)=>{
     const sql='CREATE TABLE request(id int NOT NULL AUTO_INCREMENT,name VARCHAR(255),address VARCHAR(255),contact VARCHAR(255),email VARCHAR(255),bloodGroup VARCHAR(255),description VARCHAR(255),PRIMARY KEY(id))';
     db.query(sql,(err,result)=>{
         if(err){
             throw err;
         }
         console.log(result);
-        res.send('Table created....');
+        res.send('Request table created....');
+    });
+});
+
+//to create table donor
+router.get('/createtable/donor',(req,res)=>{
+    const sql='CREATE TABLE donor(id int NOT NULL AUTO_INCREMENT,name VARCHAR(255),address VARCHAR(255),contact VARCHAR(255),email VARCHAR(255),bloodGroup VARCHAR(255),description VARCHAR(255),PRIMARY KEY(id))';
+    db.query(sql,(err,result)=>{
+        if(err){
+            throw err;
+        }
+        console.log(result);
+        res.send('Donor table created....');
     });
 });
 
