@@ -41,4 +41,16 @@ router.get('/createtable/donor',(req,res)=>{
     });
 });
 
+//to create table admin
+router.get('/createtable/admin',(req,res)=>{
+    const sql='CREATE TABLE admin(id int NOT NULL AUTO_INCREMENT,name VARCHAR(255),email VARCHAR(255),password VARCHAR(255),PRIMARY KEY(id))';
+    db.query(sql,(err,result)=>{
+        if(err){
+            throw err;
+        }
+        console.log(result);
+        res.send('Admin table created....');
+    });
+})
+
 module.exports=router;

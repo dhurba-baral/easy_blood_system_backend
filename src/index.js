@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser=require('body-parser');
 const requestRouter=require('./request/request');
 const donorRouter=require('./donor/donor');
+const adminRouter=require('./admin/admin');
 const createdbRouter=require('./create/createdb');
 const createtableRouter=require('./create/createtable');
 require('dotenv').config();
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 app.use(requestRouter)
 app.use(donorRouter)
+app.use(adminRouter)
 app.use(createdbRouter)
 app.use(createtableRouter)
 
