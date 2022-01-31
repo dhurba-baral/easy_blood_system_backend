@@ -1,12 +1,14 @@
 const router=require('express').Router();
 const mysql=require('mysql');
+const auth=require('../authentication/auth');
+require('dotenv').config();
 
 //create a connection
 const db=mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database:'blooddonation'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database:process.env.DB_NAME
 });
 
 //connect to database
@@ -61,7 +63,7 @@ router.get('/donor/:id',(req,res)=>{
 });
 
 //update a request by id
-router.put('/donor/:id', (req,res)=>{
+router.put('/donor/:id',auth,(req,res)=>{
     const sql="UPDATE donor SET name=?,address=?,contact=?,email=?,bloodGroup=?,description=? WHERE id=?";
     db.query(sql,[
         req.body.name,
@@ -80,7 +82,7 @@ router.put('/donor/:id', (req,res)=>{
 });
 
 //delete a request by id
-router.delete('/donor/:id',(req,res)=>{
+router.delete('/donor/:id',auth,(req,res)=>{
     const sql="DELETE FROM donor WHERE id=?";
     db.query(sql,[req.params.id],(err,result)=>{
         if(err){

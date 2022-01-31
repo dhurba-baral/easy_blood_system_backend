@@ -5,7 +5,7 @@ const donorRouter=require('./donor/donor');
 const adminRouter=require('./admin/admin');
 const createdbRouter=require('./create/createdb');
 const createtableRouter=require('./create/createtable');
-require('dotenv').config();
+
 
 const app = express();
 
