@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const bodyParser=require('body-parser');
 const requestRouter=require('./request/request');
 const donorRouter=require('./donor/donor');
@@ -8,6 +9,7 @@ const createtableRouter=require('./create/createtable');
 
 
 const app = express();
+app.use(cors());
 
 
 // accept url encoded
@@ -25,6 +27,6 @@ app.use(createdbRouter)
 app.use(createtableRouter)
 
 
-app.listen(3000,()=>{
-    console.log('server is running on port 3000')
+app.listen(4000,()=>{
+    console.log('server is running on port 4000')
 })

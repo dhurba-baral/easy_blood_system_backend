@@ -58,12 +58,12 @@ router.get('/request/:id',(req,res)=>{
         if(err){
             res.status(500).send(err);
         }
-        res.status(200).send(result);
+        res.status(200).send(result[0]);
     })
 });
 
 //update a request by id
-router.put('/request/:id',auth,(req,res)=>{
+router.put('/request/:id',(req,res)=>{
     const sql="UPDATE request SET name=?,address=?,contact=?,email=?,bloodGroup=?,description=? WHERE id=?";
     db.query(sql,[
         req.body.name,

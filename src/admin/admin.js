@@ -2,6 +2,7 @@ const router=require('express').Router();
 const mysql=require('mysql');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
+// const auth=require('../authentication/auth')
 require('dotenv').config();
 
 //create a connection
@@ -69,6 +70,16 @@ router.post('/admin/login',(req,res)=>{
         }
     })
 });
+
+//logout admin
+// router.post('/admin/logout',auth,(req,res)=>{
+//     try{
+//         req.token='';
+//         res.status(200).send({message:'Admin successfully logged out.'})
+//     }catch(e){
+//         res.status(500).send(e)
+//     }
+// })
 
 
 module.exports=router;

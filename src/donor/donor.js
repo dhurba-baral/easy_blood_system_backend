@@ -51,19 +51,31 @@ router.get('/donor',(req,res)=>{
     })
 });
 
-//get a request by id
+//get a donor by id
 router.get('/donor/:id',(req,res)=>{
     const sql="SELECT * FROM donor WHERE id=?";
     db.query(sql,[req.params.id],(err,result)=>{
         if(err){
             res.status(500).send(err);
         }
-        res.status(200).send(result);
+        res.status(200).send(result[0]);
     })
 });
 
-//update a request by id
-router.put('/donor/:id',auth,(req,res)=>{
+//get all donors by bloodGroup
+router.get('/donor/:group',(req,res)=>{
+    const sql="SELECT * FROM donor WHERE bloodGroup=?";
+    db.query(sql,[req.params.group],(err,result)=>{
+        if(err){
+            res.status(500).send(err);
+        }
+        res.status(200).send(result);
+    })
+})
+
+
+//update a donor by id
+router.put('/donor/:id',(req,res)=>{
     const sql="UPDATE donor SET name=?,address=?,contact=?,email=?,bloodGroup=?,description=? WHERE id=?";
     db.query(sql,[
         req.body.name,
@@ -81,7 +93,7 @@ router.put('/donor/:id',auth,(req,res)=>{
     })
 });
 
-//delete a request by id
+//delete a donor by id
 router.delete('/donor/:id',auth,(req,res)=>{
     const sql="DELETE FROM donor WHERE id=?";
     db.query(sql,[req.params.id],(err,result)=>{
