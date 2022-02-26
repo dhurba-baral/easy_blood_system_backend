@@ -62,6 +62,31 @@ router.get('/request/:id',(req,res)=>{
     })
 });
 
+//search donor by blood group
+// router.get('/donorsearch',(req,res)=>{
+//     const sql=`SELECT * FROM donor WHERE bloodGroup LIKE '%${req.query.bloodGroup}%'`;
+//     db.query(sql,(err,result)=>{
+//         if(err){
+//             res.status(500).send(err);
+//         }
+//         res.status(200).send(result);
+//     }
+//     )
+// });
+
+//search request by blood group
+router.get('/requestsearch',(req,res)=>{
+    const sql=`SELECT * FROM request WHERE bloodGroup LIKE '%${req.query.bloodGroup}%'`;
+    db.query(sql,(err,result)=>{
+        if(err){
+            res.status(500).send(err);
+        }
+        res.status(200).send(result);
+    }
+    )
+}
+);
+
 //update a request by id
 router.put('/request/:id',(req,res)=>{
     const sql="UPDATE request SET name=?,address=?,contact=?,email=?,bloodGroup=?,description=? WHERE id=?";

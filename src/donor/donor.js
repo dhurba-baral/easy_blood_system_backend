@@ -62,16 +62,18 @@ router.get('/donor/:id',(req,res)=>{
     })
 });
 
-//get all donors by bloodGroup
-router.get('/donor/:group',(req,res)=>{
-    const sql="SELECT * FROM donor WHERE bloodGroup=?";
-    db.query(sql,[req.params.group],(err,result)=>{
+//search donor by blood group
+router.get('/donorsearch',(req,res)=>{
+    const sql=`SELECT * FROM donor WHERE bloodGroup LIKE '%${req.query.bloodGroup}%'`;
+    db.query(sql,(err,result)=>{
         if(err){
             res.status(500).send(err);
         }
         res.status(200).send(result);
-    })
-})
+    }
+    )
+});
+
 
 
 //update a donor by id
